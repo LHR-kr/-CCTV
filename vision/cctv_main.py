@@ -1,6 +1,5 @@
 import makeWeb
 import cv2
-from multiprocessing import process, queues
 from queue import Queue
 from objectDetector import CNN_Model
 from detectBody import Detector
@@ -12,7 +11,7 @@ class cctv:
         self.frame
 
         #시작 전에 바꿔주기
-        self.idar_num = {"total": 0, "chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
+        self.ideal_num = {"total": 0, "chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
         self.real_num = {"total": 0, "chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
         self.deltanum=0
 
@@ -28,8 +27,6 @@ class cctv:
         self.fourcc = cv2.VideoWriter_fourcc(*'DIVX')
         self.writer = cv2.VideoWriter("video.avi", self.fourcc, self.fps, (int(self.width), int(self.height)))
 
-        self.update_num_queue=queues()
-        self.detect_action_queue=queues()
 
 
     def run(self):
@@ -37,24 +34,27 @@ class cctv:
             ret, self.frame=cv2.read()
             if not ret:
                 break
-            write=process(target=self.write_video, args=(self.frame,))
-            update=process(target=self.update_num, args=(self.frame,self.update_num_queue,))
+            det_ret=self.CNN_model.detect()
+            if det_ret.get("human") == 0:
+                #프레임만 처리하고 continue
+            # 이제 도난 감지 시작
+            if self.update_num(dict=det_ret) == 1:
+                #개수 바뀜
+            else:
+                #개수 안 바뀜
+                #dddgit
 
-            write.start()
-            update.start()
-
-            write.join()
-            update.join()
-
-            self.real_num=self.update_num_queue.get()
 
 
-    def write_video(self,frame):
-        self.writer.write(frame)
+    def update_num(self,dict):
+        num=list(zip(dict.values(),self.real_num.values()))
+        for n in (1,2,3,4)
+            if n[0] != n[1]:
+                self.real_num.update(total=sum(dict.values()))
+                return 1
+        return 0
 
-    def update_num(self,frame,q):
-        num=self.CNN_model.detect(frame)
-        q.put(num)
+
     def detect_action(self,frame,q):
         result=self.body_detector.detectBody(frame)
         result.append(result,)
@@ -79,39 +79,3 @@ class cctv:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__=='__main__':
-    frameQueue=queues()
-    writeVideoProcess=process(target=writeVideo.run,args=(frameQueue))
-    makeWebProcess=process(target=makeWeb.run,args=(frameQueue))
-    objectDetectionProcess=process(target=cliHandler,args=)
-
-    writeVideoProcess.start()
-    makeWebProcess.start()
-    objectDetectionProcess.start()
-
-    writeVideoProcess.join()
-    makeWebProcess.join()
-    objectDetectionProcess.join()
