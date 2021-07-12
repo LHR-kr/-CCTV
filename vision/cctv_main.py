@@ -42,7 +42,6 @@ class cctv:
                 #개수 바뀜
             else:
                 #개수 안 바뀜
-                #dddgit
 
 
 
