@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_margin="20sp">
 
     <ImageButton
         android:id="@+id/backX"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:layout_gravity="right"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#00ff0000"
         android:scaleType="fitCenter"
         android:src="@drawable/mypage_x" />
 
-            <TextView
-                android:id="@+id/nameMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="한이음가게"
-                android:textSize="18sp" />
+    <TextView
+        android:id="@+id/nameMarket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="한이음가게"
+        android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-                <TextView
-                    android:id="@+id/nameUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="한이음"
-                    android:textSize="20sp" />
+        <TextView
+            android:id="@+id/nameUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="한이음"
+            android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text=" 님"
-                    android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=" 님"
+            android:textSize="20sp" />
 
-            </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="0sp"
@@ -67,7 +63,7 @@
                 android:id="@+id/home"
                 android:layout_width="60sp"
                 android:layout_height="60sp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#00ff0000"
                 android:scaleType="fitCenter"
                 android:src="@drawable/mypage_home"/>
 
@@ -92,7 +88,7 @@
                 android:id="@+id/myPage"
                 android:layout_width="60sp"
                 android:layout_height="60sp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#00ff0000"
                 android:scaleType="fitCenter"
                 android:src="@drawable/mypage_user"/>
 
@@ -116,7 +112,7 @@
                 android:id="@+id/alarmList"
                 android:layout_width="60sp"
                 android:layout_height="60sp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#00ff0000"
                 android:scaleType="fitCenter"
                 android:src="@drawable/mypage_alarm"/>
 
@@ -147,6 +143,7 @@
         android:textSize="20sp" />
 
     <Button
+        android:id="@+id/liveVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
@@ -156,6 +153,7 @@
         android:text="실시간 영상"/>
 
     <Button
+        android:id="@+id/videoList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
@@ -168,6 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30sp"
         android:backgroundTint="#FFFFFF"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -177,6 +176,7 @@
         android:textSize="20sp" />
 
     <Button
+        android:id="@+id/allStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
@@ -186,6 +186,7 @@
         android:text="전체 재고 관리"/>
 
     <Button
+        android:id="@+id/dpStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
@@ -208,6 +209,7 @@
         android:textSize="20sp" />
 
     <Button
+        android:id="@+id/setAlarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
@@ -217,6 +219,7 @@
         android:text="알림 설정"/>
 
     <Button
+        android:id="@+id/setApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
