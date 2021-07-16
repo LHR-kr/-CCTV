@@ -1,4 +1,4 @@
-package com.hanium.if050.controller;
+package com.hanium.if050.web.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
