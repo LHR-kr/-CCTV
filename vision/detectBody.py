@@ -178,7 +178,7 @@ class Detector:
         detected_keypoints_for_search = []
         keypoints_list = np.zeros((0,3))
         keypoint_id = 0
-        threshold = 0.1
+        threshold = 0.3
 
         for part in (1, 2, 3, 4, 5, 6, 7, 8, 11):
             probMap = output[0,part,:,:]
@@ -215,5 +215,6 @@ class Detector:
                     point_in_a_person.append(detected_keypoints_for_search[point][0])
                     point_in_a_person.append(detected_keypoints_for_search[point][1])
             ret.append(point_in_a_person)
+            #사이즈는 -1*18
         return ret
 
