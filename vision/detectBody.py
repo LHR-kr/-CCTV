@@ -215,6 +215,9 @@ class Detector:
                     point_in_a_person.append(detected_keypoints_for_search[point][0])
                     point_in_a_person.append(detected_keypoints_for_search[point][1])
             ret.append(point_in_a_person)
-            #사이즈는 -1*18
+        #사이즈는 [사람 수][18]
         return ret
 
+#o=Detector()
+#img=cv2.imread("C:\\ProgramData\\Anaconda3\\envs\\DarkflowTest\\openpose\\examples\\media\\COCO_val2014_000000000328.jpg")
+#print(o.detectBody(img))
