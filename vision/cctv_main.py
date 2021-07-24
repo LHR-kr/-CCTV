@@ -19,6 +19,10 @@ class CCTV:
         self.frame_queue = []
 
         self.camera = cv2.VideoCapture(0)
+        # 이미지 해상도 변경
+        self.camera.set(3, int(1920))
+        self.camera.set(4, int(1080))
+
         self.width = (self.camera.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.height = (self.camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.fps = self.camera.get(cv2.CAP_PROP_FPS)
@@ -62,10 +66,11 @@ class CCTV:
 
     #스트리밍 처리 끝났고, ai 처리
     def work(self):
-        det_ret=self.CNN_model.detect()
+        det_ret=self.CNN_model.detect(self.frame)
         #사람 검출 안 되면 그냥 넘어 감
         if det_ret.get("human") == 0:
             return
+        #여기까지는 잘 됨
         # 사람이 있고 물건 개수 변함
         if self.update_num(dict=det_ret) == 1:
             #프레임 큐에 있는 프레임의 신체 좌표 추출
@@ -112,7 +117,6 @@ class CCTV:
 if __name__=="__main__":
     cctv=CCTV()
     cctv.run()
-
 
 
 
