@@ -3,11 +3,13 @@ package com.hanium.if050.web.dto;
 import com.hanium.if050.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
+
 import java.util.Date;
 
 @Getter
+@NoArgsConstructor
 public class UserRegisterRequestDto {
 
     private String id;

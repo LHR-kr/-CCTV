@@ -1,33 +1,45 @@
-plugins {
-	id 'org.springframework.boot' version '2.5.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+buildscript {
+	ext {
+		springBootVersion = '2.1.7.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+
 }
 
-group = 'com.hanium'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 repositories {
 	mavenCentral()
 }
 
+group = 'com.hanium'
+version = '0.0.1-SNAPSHOT'
+
+
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-
-	//jpa
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'com.h2database:h2'
-
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 	// lombok
-	implementation 'org.projectlombok:lombok'
+	compile('org.projectlombok:lombok')
+
+	// jpa
+//	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('com.h2database:h2')
 
 	//mongodb
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-test {
-	useJUnitPlatform()
+	//h2
+	runtimeOnly 'com.h2database:h2'
 }
