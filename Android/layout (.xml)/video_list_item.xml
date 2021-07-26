@@ -22,6 +22,33 @@
         app:layout_constraintVertical_bias="1.0">
 
         <ImageView
+            android:id="@+id/video_play"
+            android:layout_width="23sp"
+            android:layout_height="23sp"
+            app:srcCompat="@drawable/video_play"
+            tools:layout_editor_absoluteX="203dp"
+            tools:layout_editor_absoluteY="98dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/video_down"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            app:srcCompat="@drawable/video_down"
+            tools:layout_editor_absoluteX="259dp"
+            tools:layout_editor_absoluteY="98dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/video_del"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            app:srcCompat="@drawable/video_del"
+            tools:layout_editor_absoluteX="316dp"
+            tools:layout_editor_absoluteY="98dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
             android:id="@+id/cctv_pic"
             android:layout_width="160sp"
             android:layout_height="128sp"
@@ -40,27 +67,13 @@
             app:srcCompat="@drawable/sample1" />
 
         <TextView
-            android:id="@+id/cctv_num"
+            android:id="@+id/cctv_market"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="80dp"
-            android:text="00"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cctv_pic" />
-
-        <TextView
-            android:id="@+id/cctv_num2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"
-            android:layout_marginBottom="80dp"
-            android:text="번 카메라"
+            android:layout_marginBottom="88dp"
+            android:text="가게이름"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -75,6 +88,7 @@
             android:textColor="#000000"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="196dp"
-            tools:layout_editor_absoluteY="82dp" />
+            tools:layout_editor_absoluteY="56dp"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
