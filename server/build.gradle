@@ -42,4 +42,9 @@ dependencies {
 
 	//h2
 	runtimeOnly 'com.h2database:h2'
+	// Swagger 2
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+
 }
