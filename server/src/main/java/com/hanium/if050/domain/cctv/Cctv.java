@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 
 @Getter
 @NoArgsConstructor
@@ -14,6 +16,7 @@ public class Cctv {
     private String cctvID;
 
     private String cctvUrl;
+
 
 
     @Builder
