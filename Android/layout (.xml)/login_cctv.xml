@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:background="#FFFFFF">
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="16sp"
+        android:layout_margin="10sp"
         android:text="CCTV 등록"
-        android:textSize="28sp"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:textSize="28sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,78 +29,156 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10sp"
                 android:background="#000000"
-                android:text="한이음"
                 android:gravity="right"
-                android:textSize="20sp"/>
+                android:paddingVertical="10sp"
+                android:text="한이음"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10sp"
                 android:background="#c0c0c0"
+                android:paddingVertical="10sp"
                 android:text="현재 등록된 CCTV"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CCTV"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15sp" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이브와가게 CCTV"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이브와가게 CCTV"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이브와가게 CCTV"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이브와가게 CCTV"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/cctv_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="삭제하기" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15sp" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10sp"
                 android:background="#c0c0c0"
+                android:paddingVertical="10sp"
                 android:text="CCTV 추가"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CCTV 아이디"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:orientation="vertical">
 
-            <EditText
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CCTV 아이디"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/input_cctv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#000000"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CCTV 이름"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/input_cctv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#000000"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="설치 가게 이름"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/input_cctv_market"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#000000"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/cctv_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="추가하기" />
+
+            </LinearLayout>
+
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_join"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CCTV 이름"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_join"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="설치 가게 선택"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
-
-            <Spinner
-                android:id="@+id/spinner_marketlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="50sp" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/login_join_fin"
+                android:layout_width="200sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="추가하기"/>
+                android:layout_gravity="center"
+                android:text="등록 완료"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30sp" />
 
         </LinearLayout>
 
