@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="20sp">
+    android:layout_margin="20sp"
+    android:background="#FFFFFF">
 
     <ImageButton
         android:id="@+id/backX"
@@ -14,13 +15,14 @@
         android:scaleType="fitCenter"
         android:src="@drawable/mypage_x" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/nameMarket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="한이음가게"
-        android:textSize="18sp" />
+        android:textColor="#000000"
+        android:textSize="18sp" />-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -33,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="한이음"
+            android:textColor="#000000"
             android:textSize="20sp" />
 
         <TextView
@@ -40,11 +43,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text=" 님"
+            android:textColor="#000000"
             android:textSize="20sp" />
 
     </LinearLayout>
 
-    <View
+    <Space
         android:layout_width="0sp"
         android:layout_height="20sp"/>
 
@@ -71,13 +75,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="홈"/>
+                android:text="홈"
+                android:textColor="#000000"/>
 
         </LinearLayout>
 
-        <View
+        <Space
             android:layout_width="30sp"
-            android:layout_height="0sp" />
+            android:layout_height="0sp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -85,7 +90,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/myPage"
+                android:id="@+id/my_page"
                 android:layout_width="60sp"
                 android:layout_height="60sp"
                 android:backgroundTint="#00ff0000"
@@ -96,10 +101,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="마이페이지"/>
+                android:text="마이페이지"
+                android:textColor="#000000"/>
         </LinearLayout>
 
-        <View
+        <Space
             android:layout_width="30sp"
             android:layout_height="0sp" />
 
@@ -109,7 +115,32 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/alarmList"
+                android:id="@+id/cctv_edit"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:backgroundTint="#00ff0000"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mypage_cctv"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="CCTV"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="30sp"
+            android:layout_height="0sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/alarm_list"
                 android:layout_width="60sp"
                 android:layout_height="60sp"
                 android:backgroundTint="#00ff0000"
@@ -120,12 +151,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="알림"/>
+                android:text="알림"
+                android:textColor="#000000"/>
 
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <View
+    <Space
         android:layout_width="match_parent"
         android:layout_height="1sp"
         android:layout_marginLeft="5sp"
@@ -162,7 +196,7 @@
         android:textColor="#000000"
         android:text="영상 목록"/>
 
-    <View
+    <Space
         android:layout_width="wrap_content"
         android:layout_height="30sp"
         android:backgroundTint="#FFFFFF"/>
@@ -195,10 +229,9 @@
         android:textColor="#000000"
         android:text="매장 재고 관리"/>
 
-    <View
+    <Space
         android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:backgroundTint="#FFFFFF"/>
+        android:layout_height="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
