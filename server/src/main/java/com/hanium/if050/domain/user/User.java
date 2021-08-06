@@ -2,20 +2,20 @@ package com.hanium.if050.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.Date;
 
+
 @Getter
-@Entity
-@Document(collection="User")
+@NoArgsConstructor
+@Document(collection="user")
+//@Document(collection = "USER")
 public class User {
 
     @Id
-    @Column(nullable = false, unique = true)
     private String id;
 
     private String password;
