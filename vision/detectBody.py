@@ -220,4 +220,4 @@ class Detector:
 
 #o=Detector()
 #img=cv2.imread("C:\\ProgramData\\Anaconda3\\envs\\DarkflowTest\\openpose\\examples\\media\\COCO_val2014_000000000328.jpg")
-#print(o.detectBody(img))
+#print(len(o.detectBody(img)))
