@@ -3,7 +3,7 @@ import tensorflow as tf
 from objectDetector import CNN_Model
 from detectBody import Detector
 from detectAction import LSTM_MODEL
-
+from tracker import tracker
 from datetime import datetime
 
 from flask import Response
@@ -38,16 +38,17 @@ class CCTV:
         self.CNN_model=CNN_Model()
         self.body_detector=Detector() # 불러오기
 
+        self.tracker=tracker() #트래킹
+
+        self.cnt=20
+        self.bool_for_detect_action=False
+
         global graph
         global sess
         sess = tf.Session()
         graph = tf.get_default_graph()
         set_session(sess)
         self.LSTM_model=LSTM_MODEL()
-        
-        #이거는 실험용, 나중에 삭제
-        self.cnt=0
-
 
 
     #실질적인 메임 함수, 스트리밍하고 ai, 데이터 처리
@@ -88,32 +89,28 @@ class CCTV:
 
     #스트리밍 처리 끝났고, ai 처리
     def work(self):
-        self.cnt+=1
-        obj_det_ret=self.CNN_model.detect(self.frame)
+        #프레임 처리
         self.frame_queue.append(self.frame)
         if len(self.frame_queue) > 60:
             self.frame_queue.pop(0)
+        if self.bool_for_detect_action==True:
+            self.cnt-=1
+
+        #CNN
+        obj_det_ret, person_num, person_bounding_boxes=self.CNN_model.detect(self.frame)
 
         # 사람이 있고 물건 개수 변함
         # 개수 달라졌는지 체크하고 달라졌으면 업데이트 후 1반환, 아니면 0 반환
-        if self.update_num(dict=obj_det_ret) == 1: #self.cnt==190:
-            #임시로 만든 거
-            #프레임 큐에 있는 프레임의 신체 좌표 추출
-            joint_data=[]
-            #끝에 20프레임만 입력
-            for frame in self.frame_queue[-20:]:
-                #body detector의 리턴값 모양은 [사람][좌표데이터]
-                    joint_data.append(self.body_detector.detectBody(frame))
-            #data는 [frame][person][좌표데이터]이다
-            #추출한 좌표를 lstm에 입력하고 도난 판단
-            if self.LSTM_model.predict(joint_data)==1: # 도난임
-                print("*************clip****************")
-                self.writeClip()
-                #서버에 알리기
-            #도난 아님
-            else:
+        if self.update_num(dict=obj_det_ret) == 1:
+            if (len(self.frame_queue)) < 60:
                 return
-
+            self.bool_for_detect_action=True
+        
+        #동작인식
+        if self.cnt==0:
+            self.detectAction()
+            self.cnt=15
+            self.bool_for_detect_action=False
 
 
     #개수 달라졌느지 체크하고 달라졌으면 업데이트 후 1반환, 아니면 0 반환
@@ -123,10 +120,6 @@ class CCTV:
         num=list(zip(dict.values(),self.real_num.values()))
         for index in (1,2,3,4):
             if num[index][0] < num[index][1]:
-                #업데이트가 안 됨
-                print(num)
-                print(num[index][0])
-                print(num[index][1])
                 self.real_num=dict.copy()
                 return 1
         #임의로 1 반환하게 만들고, 원래는 0 반환해야 한다.
@@ -139,6 +132,29 @@ class CCTV:
         for frame in self.frame_queue:
             writer.write(frame)
         writer.release()
+
+    def detectAction(self):
+        # 프레임 큐에 있는 프레임의 신체 좌표 추출
+        joint_data = []
+        # 끝에 40프레임만 입력
+        for frame in self.frame_queue[-40:]:
+            # body detector의 리턴값 모양은 [사람][좌표데이터]
+            joint_data.append(self.body_detector.detectBody(frame))
+        # data는 [frame][person][좌표데이터]이다
+        # 추출한 좌표를 lstm에 입력하고 도난 판단
+        result = self.LSTM_model.predict(joint_data)
+        if result == 1:  # 도난임
+            print("*************clip****************")
+            self.writeClip()
+            # 서버에 알리기
+        # 도난 아님
+        elif result == 2:
+            # 물건 고른 거니까 개수 증가
+            # 임시로 return
+            return
+        else:
+            return
+
 
 if __name__=="__main__":
     cctv=CCTV()

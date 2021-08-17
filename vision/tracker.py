@@ -7,8 +7,8 @@ class tracker:
         self.center_points = {}
 
         self.id_count = 0
-
-    #인자는 물체가 있는  사각형 영역이 담긴 이차원 배열
+    #입력은 [사람 수][4]인데 리턴은 [사람수][5]
+    #인자는 물체가 있는  사각형 영역이 담긴 이차원 배열, 박스가 저장된 배열만 집어 넣으면, 아이디랑 박스좌표 담긴 배열 반환
     def update(self, objects_rect):
         # 아이디와 중심좌표 임시로 저장하는 이차원 배열
         objects_bbs_ids = []

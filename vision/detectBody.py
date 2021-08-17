@@ -1,10 +1,11 @@
 import cv2
 import numpy as np
+from math import sqrt
 class Detector:
     def __init__(self):
         self.is_cpu=1
-        self.protoFile = "C:\\ProgramData\\Anaconda3\\envs\\DarkflowTest\\openpose\\models\\pose\\coco\\pose_deploy_linevec.prototxt"
-        self.weightsFile = "C:\\ProgramData\\Anaconda3\\envs\\DarkflowTest\\openpose\\models\\pose\\coco\\pose_iter_440000.caffemodel"
+        self.protoFile = "./pose_deploy_linevec.prototxt"
+        self.weightsFile = "./pose_iter_440000.caffemodel"
         self.net = cv2.dnn.readNetFromCaffe(self.protoFile, self.weightsFile)
         if self.is_cpu == 1:
             self.net.setPreferableBackend(cv2.dnn.DNN_TARGET_CPU)
@@ -16,10 +17,12 @@ class Detector:
         self.keypointsMapping = ['Nose', 'Neck', 'R-Sho', 'R-Elb', 'R-Wr', 'L-Sho', 'L-Elb', 'L-Wr', 'R-Hip', 'R-Knee', 'R-Ank', 'L-Hip', 'L-Knee', 'L-Ank', 'R-Eye', 'L-Eye', 'R-Ear', 'L-Ear']
         self.POSE_PAIRS = [[1,2], [1,5], [2,3], [3,4], [5,6], [6,7],
                   [1,8],  [1,11]]
+
         # index of pafs correspoding to the POSE_PAIRS
         # e.g for POSE_PAIR(1,2), the PAFs are located at indices (31,32) of output, Similarly, (1,5) -> (39,40) and so on.
         self.mapIdx = [[31,32], [39,40], [33,34], [35,36], [41,42], [43,44],
               [19,20], [25,26]]
+
 
 
 
@@ -44,6 +47,7 @@ class Detector:
         invalid_pairs = []
         n_interp_samples = 10
         paf_score_th = 0.1
+        # 이 threshold 낮춰보자. 원래는 0.7
         conf_th = 0.7
         # loop for every POSE_PAIR
         for k in range(len(self.mapIdx)):
@@ -180,7 +184,7 @@ class Detector:
         keypoint_id = 0
         threshold = 0.3
 
-        for part in (1, 2, 3, 4, 5, 6, 7, 8, 11):
+        for part in (1, 2, 3, 4, 5, 6, 7,8,11):
             probMap = output[0,part,:,:]
             probMap = cv2.resize(probMap, (image1.shape[1], image1.shape[0]))
             keypoints = self.getKeypoints(probMap, threshold)
@@ -206,7 +210,7 @@ class Detector:
 
         for person in personwiseKeypoints:
             point_in_a_person=[]
-            for index in (1, 2, 3, 4, 5, 6, 7, 8, 11):
+            for index in (1, 2, 3, 4, 5, 6, 7,8,11):
                 point=np.int32(person[index])
                 if point == -1:
                     point_in_a_person.append(-1)
@@ -215,7 +219,50 @@ class Detector:
                     point_in_a_person.append(detected_keypoints_for_search[point][0])
                     point_in_a_person.append(detected_keypoints_for_search[point][1])
             ret.append(point_in_a_person)
-        #사이즈는 [사람 수][18]
+        #사이즈는 [사람 수][14]
+        #코사인 값 붙여서 [사람 수][16만들기]
+        for person in ret:
+            if person[2] >0 and person[3] >0 and person[4] >0 and person[5] >0 and person[6] >0 and person[7] >0 :
+                vec1x=person[2]-person[4]
+                vec1y=person[3]-person[5]
+                vec2x=person[6]-person[4]
+                vec2y=person[7]-person[5]
+                inner=vec1x*vec2x+vec1y*vec2y
+                costh=inner/sqrt(vec1x*vec1x+vec1y*vec1y)/sqrt(vec2x*vec2x+vec2y*vec2y)
+                person.append(costh)
+            else:
+                person.append(-1)
+            if person[8] > 0 and person[9] > 0 and person[10] > 0 and person[11] > 0 and person[12] > 0 and person[13] > 0:
+                vec1x = person[8] - person[10]
+                vec1y = person[9] - person[11]
+                vec2x = person[12] - person[10]
+                vec2y = person[13] - person[11]
+                inner = vec1x * vec2x + vec1y * vec2y
+                costh = inner / sqrt(vec1x * vec1x + vec1y * vec1y) / sqrt(vec2x * vec2x + vec2y * vec2y)
+                person.append(costh)
+            else:
+                person.append(-1)
+
+            if person[6] > 0 and person[7] > 0 and person[2] > 0 and person[3] > 0 and person[14] > 0 and person[15] > 0:
+                vec1x = person[6] - person[2]
+                vec1y = person[7] - person[3]
+                vec2x = person[14] - person[2]
+                vec2y = person[15] - person[3]
+                inner = vec1x * vec2x + vec1y * vec2y
+                costh = inner / sqrt(vec1x * vec1x + vec1y * vec1y) / sqrt(vec2x * vec2x + vec2y * vec2y)
+                person.append(costh)
+            else:
+                person.append(-1)
+            if person[12] > 0 and person[13] > 0 and person[16] > 0 and person[17] > 0 and person[8] > 0 and person[9] > 0:
+                vec1x = person[12] - person[8]
+                vec1y = person[13] - person[9]
+                vec2x = person[16] - person[8]
+                vec2y = person[17] - person[9]
+                inner = vec1x * vec2x + vec1y * vec2y
+                costh = inner / sqrt(vec1x * vec1x + vec1y * vec1y) / sqrt(vec2x * vec2x + vec2y * vec2y)
+                person.append(costh)
+            else:
+                person.append(-1)
         return ret
 
 #o=Detector()

@@ -1,8 +1,12 @@
-import asyncio
-import websockets
+import requests
+import json
 
-async def connect():
-    async with websockets.connect("주소") as websocket:
-        await websocket.send("보낼 데이터")
-        data=await websocket.rev() # 서버에서 데이터 받기
-asyncio.get_event_loop().run_until_complete(connect())
+# GET
+res = requests.get('http://127.0.0.1:5000')
+print(str(res.status_code) + " | " + res.text)
+
+# POST
+headers = {'Content-Type': 'application/json; chearset=utf-8'}
+data = {"cctvID":"aaaa","cctvUrl":"http://www.naver.com"}
+res = requests.post('http://3.238.53.109:8080/cctv/save', data=json.dumps(data), headers=headers)
+print(str(res.status_code) + " | " + res.text)
