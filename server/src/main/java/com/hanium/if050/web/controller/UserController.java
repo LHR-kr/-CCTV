@@ -1,6 +1,7 @@
 package com.hanium.if050.web.controller;
 
 import com.hanium.if050.service.user.UserService;
+import com.hanium.if050.web.dto.UserLoginRequestDto;
 import com.hanium.if050.web.dto.UserRegisterRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,10 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/user/login")
-    public boolean login() {
+    public boolean login(@RequestBody UserLoginRequestDto requestDto) {
 
-        //TODO : 로그인
 
-        return true;
+        return userService.login(requestDto);
     }
 
     @PostMapping("/user/register")

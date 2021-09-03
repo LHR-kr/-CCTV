@@ -12,7 +12,6 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @Document(collection="user")
-//@Document(collection = "USER")
 public class User {
 
     @Id
