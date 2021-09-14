@@ -15,29 +15,29 @@ public class Stock {
     @Id
     private String cctvID;
 
-    private Long Chocopie;
+    private String chocopie;
 
-    private Long Frenchpie;
+    private String frenchpie;
 
-    private Long Margaret;
+    private String margaret;
 
-    private Long Moncher;
+    private String moncher;
 
     @Builder
-    public Stock(String cctvID, Long Chocopie, Long Frenchpie, Long Margaret, Long Moncher) {
+    public Stock(String cctvID, String chocopie,String frenchpie, String margaret, String moncher) {
         this.cctvID = cctvID;
-        this.Chocopie = Chocopie;
-        this.Frenchpie = Frenchpie;
-        this.Margaret = Margaret;
-        this.Moncher = Moncher;
+        this.chocopie = chocopie;
+        this.frenchpie = frenchpie;
+        this.margaret = margaret;
+        this.moncher = moncher;
 
     }
 
     public void update(StockSaveRequestDto requestDto) {
-        this.Chocopie = requestDto.getChocopie();
-        this.Frenchpie = requestDto.getFrenchpie();
-        this.Margaret = requestDto.getMargaret();
-        this.Moncher = requestDto.getMoncher();
+        this.chocopie = requestDto.getChocopie();
+        this.frenchpie = requestDto.getFrenchpie();
+        this.margaret = requestDto.getMargaret();
+        this.moncher = requestDto.getMoncher();
     }
 
 }

@@ -3,28 +3,40 @@ package com.hanium.if050.service.stock;
 import com.hanium.if050.domain.stock.Stock;
 import com.hanium.if050.domain.stock.StockRepository;
 import com.hanium.if050.web.dto.StockSaveRequestDto;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Service
 public class StockService {
 
     private final StockRepository stockRepository;
 
+    public StockService(StockRepository stockRepository) {
+        this.stockRepository = stockRepository;
+    }
+
     public String stockSave(String id,StockSaveRequestDto requestDto) {
         Optional<Stock> stock = stockRepository.findById(id);
 
-        stock.ifPresent(selectStock -> {
-                selectStock.update(requestDto);
-            }
-        );
 
-        return id;
+        if (stock.isPresent()) {
+            stock.get().update(requestDto);
+            stockRepository.save(stock.get());
+            return stock.get().getCctvID();
+        }else {
+            Stock newStock = requestDto.toEntity(id);
+            stockRepository.save(newStock);
+            return newStock.getCctvID();
+        }
+
+    }
+
+    public Stock find(String id) {
+        Optional<Stock> stock = stockRepository.findById(id);
+
+
+        return stock.orElse(null);
 
     }
 }
