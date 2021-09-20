@@ -21,10 +21,13 @@ public class UserService {
     public boolean register(UserRegisterRequestDto requestDto) {
         //TODO : 회원가입
 
-        duplicateUser(requestDto.getId());
+        if (duplicateUser(requestDto.getId())) {
+            return false;
+        }
 
-        userRepository.save(requestDto.toEntity());
+        User user = requestDto.toEntity();
 
+        userRepository.save(user);
 
         return true;
     }
@@ -46,11 +49,11 @@ public class UserService {
         return false;
     }
 
-    private void duplicateUser(String id) {
-        userRepository.findById(id)
-                .ifPresent(m ->{
-                    throw new IllegalStateException("이미 존재하는 아이디입니다.");
-                });
+    private boolean duplicateUser(String id) {
+
+        Optional<User> user = userRepository.findById(id);
+
+        return user.isPresent();
 
     }
 }

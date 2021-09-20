@@ -3,6 +3,7 @@ package com.hanium.if050.web.controller;
 import com.hanium.if050.service.user.UserService;
 import com.hanium.if050.web.dto.UserLoginRequestDto;
 import com.hanium.if050.web.dto.UserRegisterRequestDto;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,20 +17,33 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/user/login")
-    public boolean login(@RequestBody UserLoginRequestDto requestDto) {
+    public loginResponse login(@RequestBody UserLoginRequestDto requestDto) {
 
+        boolean status = userService.login(requestDto);
 
-        return userService.login(requestDto);
+        return new loginResponse(status);
     }
 
     @PostMapping("/user/register")
-    public boolean register(@RequestBody UserRegisterRequestDto requestDto) {
+    public loginResponse register(@RequestBody UserRegisterRequestDto requestDto) {
 
-        return userService.register(requestDto);
+        boolean status= userService.register(requestDto);
+        return new loginResponse(status);
     }
 
     @GetMapping("/user/withdrawal")
     public void withdrawal() {
         //TODO : 회원탈퇴
     }
+
+    @Data
+    static class loginResponse{
+        private boolean status;
+
+        public loginResponse(boolean status) {
+            this.status = status;
+        }
+    }
+
+
 }
