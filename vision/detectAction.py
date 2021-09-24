@@ -1,5 +1,5 @@
 import numpy as np
-from tensorflow.keras.layers import Dense, LSTM, Dropout, TimeDistributed
+from tensorflow.keras.layers import Dense, LSTM, TimeDistributed
 from tensorflow.keras.models import Sequential,load_model
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.optimizers import Adam
@@ -60,21 +60,21 @@ class LSTM_MODEL:
         print(Y)
         self.model.fit(X,Y,epochs=epoch,batch_size=3)
         self.save()
-    def predict(self,data):
-        #data는 [프레임][사람 수][데이터]
-        #일단 세사람
-        #축 변경해서 [사람 수][프레임][데이터]
-        data=np.swapaxes(data,0,1)
-        for personal_data in data:
-                personal_data=np.reshape(personal_data,(1,40,22))
-                result=self.model.predict(personal_data)
-                print(result)
-                if result[0][1]>0.1 or result[0][2]>0.1:
-                    if result[0][1]>result[0][2]:
-                        return 1
-                    else:
-                        return 2
-        return 0
+    def predict(self,data,max_person_num):
+        #data는 [사람 수 <= 3 ][프레임 40 ][데이터 22]
+        #일단 최대 세사람
+        ret=[0,0,0]
+        for i in range (max_person_num):
+            personal_data=np.reshape(data[i],(1,40,22))
+            result=self.model.predict(personal_data)
+            print(result)
+            if result[0][1]>0.1 or result[0][2]>0.1:
+                if result[0][1]>result[0][2]:
+                    ret[i]=1
+                else:
+                    ret[i]=2
+        print(ret)
+        return ret
 
     def pre(self,data):
         print("predict start")
