@@ -17,17 +17,17 @@ public class VideoController {
     private final VideoService videoService;
 
     @PostMapping("/video/{id}/save")
-    public ResponseEntity<?> saveVideo(@PathVariable String id, @RequestParam("file") MultipartFile file) {
+    public Long saveVideo(@PathVariable String id, @RequestParam("file") MultipartFile file) {
 
         try{
             String originFileName = file.getOriginalFilename();
-            String savePath = System.getProperty("user.dir") + "\\files";
+            String savePath = System.getProperty("user.home") + "/files";
 
             if (!new File(savePath).exists()) {
                 try {
                     new File(savePath).mkdir();
                 } catch (Exception e) {
-                    return ResponseEntity.ok(e);
+                    return -1L;
                 }
             }
 
@@ -40,15 +40,15 @@ public class VideoController {
             requestDto.setFilePath(filePath);
             requestDto.setOriginFileName(originFileName);
 
-            videoService.saveVideo(requestDto);
+            return videoService.saveVideo(requestDto);
+
 
 
         }catch(Exception e){
-            return ResponseEntity.ok(e);
+            return -1L;
         }
 
 
-        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }

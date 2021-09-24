@@ -1,5 +1,6 @@
 package com.hanium.if050.service.video;
 
+import com.hanium.if050.domain.video.Video;
 import com.hanium.if050.domain.video.VideoRepository;
 import com.hanium.if050.web.dto.VideoSaveRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -11,8 +12,11 @@ public class VideoService {
 
     private final VideoRepository videoRepository;
 
-    public void saveVideo(VideoSaveRequestDto requestDto) {
-        videoRepository.save(requestDto.toEntity());
+    public Long saveVideo(VideoSaveRequestDto requestDto) {
+
+        Video video = requestDto.toEntity();
+        videoRepository.save(video);
+        return video.getId();
     }
 
 }
