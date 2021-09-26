@@ -2,17 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_margin="10sp">
+        android:layout_margin="10sp"
+        android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/userSidePage"
+            android:id="@+id/user_side_page"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:backgroundTint="#00ff0000"
@@ -21,7 +22,7 @@
 
         <View
             android:layout_width="180sp"
-            android:layout_height="0sp"/>
+            android:layout_height="0sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,4 +36,64 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/dp_menu"
+                    android:layout_width="32sp"
+                    android:layout_height="32sp"
+                    android:adjustViewBounds="true"
+                    android:background="#ffffff"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dp_menu"
+                    android:text="자신형"/>
+
+                <ImageButton
+                    android:id="@+id/dp_list"
+                    android:layout_width="32sp"
+                    android:layout_height="32sp"
+                    android:layout_marginHorizontal="10sp"
+                    android:adjustViewBounds="true"
+                    android:background="#ffffff"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dp_list"
+                    android:text="목록형"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 번호          이름                 매장                         고유번호"
+                android:textColor="#000000"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="#000000" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

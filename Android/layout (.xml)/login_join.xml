@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_margin="10sp"
         android:text="회원가입"
-        android:textSize="28sp"
+        android:textSize="25sp"
         android:textColor="#000000"/>
 
     <ScrollView
@@ -118,7 +118,7 @@
                     android:id="@+id/input_pwpw_warn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="비밀번호를 다시 입력해주세요."
+                    android:text="비밀번호를 확인해주세요."
                     android:textColor="#777777"
                     android:textSize="15sp"/>
 
@@ -167,6 +167,7 @@
                     android:id="@+id/input_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:backgroundTint="#000000"
                     android:textColor="#000000"
                     android:maxLines="1"/>
@@ -182,6 +183,57 @@
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
+                <EditText
+                    android:id="@+id/input_birth"
+                    android:layout_width="200sp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#000000"
+                    android:inputType="text"
+                    android:textColor="#000000"/>
+
+                <!--<LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/input_birthyear"
+                        android:layout_width="80sp"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:backgroundTint="#000000"
+                        android:textColor="#000000"
+                        android:maxLength="12"
+                        android:gravity="center"
+                        android:hint="연"
+                        android:textColorHint="#777777"/>
+
+                    <EditText
+                        android:id="@+id/input_birthmon"
+                        android:layout_width="80sp"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:backgroundTint="#000000"
+                        android:textColor="#000000"
+                        android:maxLength="12"
+                        android:gravity="center"
+                        android:hint="월"
+                        android:textColorHint="#777777"/>
+
+                    <EditText
+                        android:id="@+id/input_birthday"
+                        android:layout_width="80sp"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:backgroundTint="#000000"
+                        android:textColor="#000000"
+                        android:maxLength="12"
+                        android:gravity="center"
+                        android:hint="일"
+                        android:textColorHint="#777777"/>
+
+                </LinearLayout>-->
+
+
 
                 <Space
                     android:layout_width="match_parent"
@@ -194,56 +246,21 @@
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/input_phone"
+                    android:layout_width="200sp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:inputType="text"
+                    android:backgroundTint="#000000"
+                    android:textColor="#000000"
+                    android:maxLength="12"/>
 
-                    <EditText
-                        android:id="@+id/input_firnum"
-                        android:layout_width="80sp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#000000"
-                        android:inputType="phone"
-                        android:textColor="#000000"
-                        android:maxLength="4"
-                        android:gravity="center"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/input_scdnum"
-                        android:layout_width="80sp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#000000"
-                        android:inputType="phone"
-                        android:textColor="#000000"
-                        android:maxLength="4"
-                        android:gravity="center"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/input_trdnum"
-                        android:layout_width="80sp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#000000"
-                        android:inputType="phone"
-                        android:textColor="#000000"
-                        android:maxLength="4"
-                        android:gravity="center"/>
-
-                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="'-'를 제외하고 기입해주세요."
+                    android:textColor="#777777"
+                    android:textSize="15sp"/>
 
                 <Space
                     android:layout_width="match_parent"
@@ -261,27 +278,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/input_email"
-                        android:layout_width="170sp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#000000"
-                        android:textColor="#000000"
-                        android:maxLines="1"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="\@"
-                        android:textColor="#000000" />
-
-                    <EditText
-                        android:id="@+id/input_email_link"
-                        android:layout_width="170sp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#000000"
-                        android:textColor="#000000"
-                        android:maxLines="1"/>
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="350sp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:backgroundTint="#000000"
+                    android:textColor="#000000"
+                    android:maxLines="1"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -301,6 +305,23 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="30sp" />
+
+            <EditText
+                android:id="@+id/input_token"
+                android:layout_width="350sp"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:backgroundTint="#000000"
+                android:textColor="#000000"
+                android:maxLines="1"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="(데이터가 표시될 부분입니다.)"/>
 
         </LinearLayout>
     </ScrollView>

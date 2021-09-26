@@ -18,5 +18,11 @@ class StockAll : AppCompatActivity() {
             val intent = Intent(this, UserSidePage::class.java)
             startActivity(intent)
         })
+
+        binding.userSidePage.setOnClickListener{
+            val intent = Intent(this, UserSidePage::class.java)
+            startActivity(intent)
+        }
+
     }
 }

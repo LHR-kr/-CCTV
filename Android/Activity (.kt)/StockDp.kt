@@ -18,6 +18,20 @@ class StockDp : AppCompatActivity() {
             val intent = Intent(this, UserSidePage::class.java)
             startActivity(intent)
         })
+
+        binding.userSidePage.setOnClickListener{
+            val intent = Intent(this, UserSidePage::class.java)
+            startActivity(intent)
+        }
+
+        binding.dpMenu.setOnClickListener{
+            // 메뉴형으로 배열 변경
+        }
+
+        binding.dpList.setOnClickListener{
+            // 목록형으로 배열 변경
+        }
+
     }
 
 }
