@@ -42,5 +42,20 @@ class UserSidePage : AppCompatActivity() {
             val intent = Intent(this, StockDp::class.java)
             startActivity(intent)
         }
+
+        binding.setCctv.setOnClickListener{
+            val intent = Intent(this, SetCctv::class.java)
+            startActivity(intent)
+        }
+
+        binding.alarmList.setOnClickListener{
+            val intent = Intent(this, AlarmList::class.java)
+            startActivity(intent)
+        }
+
+        binding.setCctv2.setOnClickListener{
+            val intent = Intent(this, SetCctv::class.java)
+            startActivity(intent)
+        }
     }
 }

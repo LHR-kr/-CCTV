@@ -23,7 +23,7 @@
 
 
         <ImageView
-            android:id="@+id/cctv_pic"
+            android:id="@+id/stock_pic"
             android:layout_width="170sp"
             android:layout_height="170sp"
             android:layout_marginStart="8dp"

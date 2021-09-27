@@ -22,16 +22,30 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="40sp" />
+        android:layout_height="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="아이디 또는 비밀번호를 확인해주세요"
+        android:textColor="#ff0000"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
 
     <EditText
+        android:id="@+id/logininput_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:backgroundTint="#000000"
         android:gravity="center"
-        android:hint="아이디를 입력해주세요."
+        android:hint="아이디를 입력해주세요"
         android:textColorHint="#777777"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -42,18 +56,18 @@
         android:layout_height="10sp" />
 
     <EditText
+        android:id="@+id/logininput_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:backgroundTint="#000000"
         android:gravity="center"
-        android:hint="비밀번호를 입력해주세요."
+        android:hint="비밀번호를 입력해주세요"
         android:textColorHint="#777777"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:inputType="textPassword"
-        android:maxLines="1"/>
+        android:inputType="textPassword"/>
 
     <Space
         android:layout_width="match_parent"

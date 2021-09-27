@@ -7,7 +7,7 @@
     android:background="#FFFFFF">
 
     <ImageButton
-        android:id="@+id/backX"
+        android:id="@+id/back_x"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:layout_gravity="right"
@@ -115,7 +115,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/cctv_edit"
+                android:id="@+id/set_cctv"
                 android:layout_width="60sp"
                 android:layout_height="60sp"
                 android:backgroundTint="#00ff0000"
@@ -159,106 +159,182 @@
 
     </LinearLayout>
 
-    <Space
+    <View
         android:layout_width="match_parent"
         android:layout_height="1sp"
         android:layout_marginLeft="5sp"
         android:layout_marginTop="30sp"
         android:layout_marginRight="5sp"
-        android:layout_marginBottom="30sp"
         android:background="#dcdcdc" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:text="영상"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/liveVideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:text="실시간 영상"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/videoList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:text="영상 목록"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20sp" />
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:backgroundTint="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:text="영상"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:text="재고관리"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+            <Button
+                android:id="@+id/live_video"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="실시간 영상"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/allStock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:text="전체 재고 관리"/>
+            <Button
+                android:id="@+id/video_list"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="영상 목록"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/dpStock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:text="매장 재고 관리"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20sp"
+                android:backgroundTint="#FFFFFF" />
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:text="재고관리"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:text="설정"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+            <Button
+                android:id="@+id/allStock"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="전체 재고 관리"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/setAlarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:text="알림 설정"/>
+            <Button
+                android:id="@+id/dpStock"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="매장 재고 관리"
+                android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/setApp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:text="앱 설정"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:text="설정"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/set_cctv2"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="CCTV 설정"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/set_alarm"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="알림 설정"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/set_app"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="앱 설정"
+                android:textColor="#000000" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:text="CATCHA"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/qna"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="문의"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/info_app"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="left"
+                android:text="앱 정보"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/logout"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:layout_gravity="center"
+                android:text="로그아웃"
+                android:textColor="#777777"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

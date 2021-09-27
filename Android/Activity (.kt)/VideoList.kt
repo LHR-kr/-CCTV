@@ -11,7 +11,6 @@ import com.example.catcha.databinding.VideoListBinding
 
 class VideoList : AppCompatActivity() {
     private lateinit var binding: VideoListBinding
-    private val cctvList: ArrayList<List<Cctvs>> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +40,19 @@ class VideoList : AppCompatActivity() {
 
         binding = VideoListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //addData()
+        addData()
         binding.itemsCctv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.itemsCctv.adapter = CctvAdapter(cctvList)
+        //binding.itemsCctv.adapter = CctvAdapter(cctvList)
         binding.itemsCctv.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        binding.userSidePage.setOnClickListener{
+            val intent = Intent(this, UserSidePage::class.java)
+            startActivity(intent)
+        }
     }
 
-    /*private fun addData() {
+    private fun addData() {
         // cctv_pic, cctv_market, cctv_date 데이터를 ViewHolder에 삽입하는 코드
 
-    }*/
+    }
 }

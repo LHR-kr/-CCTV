@@ -2,29 +2,60 @@ package com.example.catcha
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.catcha.databinding.LoginJoinBinding
 import com.example.catcha.databinding.LoginMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginMain : AppCompatActivity() {
-    private var mBinding: LoginMainBinding? = null
-    private val binding get() = mBinding!!
+    val binding by lazy { LoginMainBinding.inflate(layoutInflater) }
+    val api = APIS.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = LoginMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         binding.loginJoin.setOnClickListener{
             val intent = Intent(this, LoginJoin::class.java)
             startActivity(intent)
         }
 
+        // 맨 밑 로그인 버튼
         binding.login.setOnClickListener{
+            val data = UserLogin(binding.logininputId.text.toString(), binding.logininputPw.text.toString())
+            api.login_users(data).enqueue(object : Callback<PostResult> {
+                override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
+                    Log.d("log",response.toString())
+                    Log.d("log", response.body().toString())
+/*
+                    if(!response.body().toString().isEmpty())
+                        binding.text.setText(response.body().toString());
+*/
+/* 로그인 성공 후 메인 화면으로 넘어가기
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }
+*/
+                }
 
+                override fun onFailure(call: Call<PostResult>, t: Throwable) {
+                    // 실패
+                    Log.d("log",t.message.toString())
+                    Log.d("log","fail")
+
+/* 실패했을때 토스트메시지
+                    Toast.makeText(this, "아이디 또는 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show()
+*/
+                }
+
+            })
+
+
+        }
     }
 
 }
