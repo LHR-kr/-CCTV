@@ -6,12 +6,16 @@ import com.hanium.if050.web.dto.CctvSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class CctvService {
 
     private final CctvRepository cctvRepository;
 
+    @Transactional
     public String cctvSave(CctvSaveRequestDto requestDto) {
 
         Cctv entity = requestDto.toEntity();
@@ -19,6 +23,17 @@ public class CctvService {
         cctvRepository.save(entity);
 
         return entity.getCctvID();
+    }
+
+    @Transactional
+    public String getUrl(String cctvId) {
+        Optional<Cctv> entity = cctvRepository.findById(cctvId);
+
+        if (entity.isPresent()) {
+            return entity.get().getCctvUrl();
+        } else {
+            return "";
+        }
     }
 
 

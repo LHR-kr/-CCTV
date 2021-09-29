@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,8 +33,12 @@ public class VideoController {
             }
 
 
-            String filePath=savePath+"\\"+originFileName;
-            file.transferTo(new File(filePath));
+            String filePath=savePath+"/"+originFileName;
+            File save = new File(filePath);
+            file.transferTo(save);
+
+            save.setWritable(true);
+            save.setReadable(true);
 
             VideoSaveRequestDto requestDto = new VideoSaveRequestDto();
             requestDto.setCctvId(id);
@@ -45,6 +50,7 @@ public class VideoController {
 
 
         }catch(Exception e){
+            System.out.println(e);
             return -1L;
         }
 

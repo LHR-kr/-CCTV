@@ -216,8 +216,8 @@ class Detector:
                     point_in_a_person.append(-1)
                     point_in_a_person.append(-1)
                 else:
-                    point_in_a_person.append(detected_keypoints_for_search[point][0])
-                    point_in_a_person.append(detected_keypoints_for_search[point][1])
+                    point_in_a_person.append(detected_keypoints_for_search[point][0]*2)
+                    point_in_a_person.append(detected_keypoints_for_search[point][1]*2)
             ret.append(point_in_a_person)
         #사이즈는 [사람 수][14]
         #코사인 값 붙여서 [사람 수][16만들기]
