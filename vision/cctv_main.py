@@ -30,10 +30,10 @@ class CCTV:
 
         #임의로 테스트용으로 함, 나중에 변경
         #self.camera = cv2.VideoCapture("./video/kakaoTalk_20210709_155435322.mp4")
-        self.camera = cv2.VideoCapture("./video/18.mp4")
+        self.camera = cv2.VideoCapture("./video/b.mp4")
         # 이미지 해상도 변경
-        self.camera.set(3, int(1920))
-        self.camera.set(4, int(1080))
+        self.camera.set(3, int(960))
+        self.camera.set(4, int(540))
 
         self.width = (self.camera.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.height = (self.camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -54,6 +54,7 @@ class CCTV:
         self.bool_for_detect_action=False
 
         self.headers = {'Content-Type': 'application/json; chearset=utf-8'}
+        self.video_headers = {'Content-Type': 'multipart/form-data; chearset=utf-8'}
 
         global graph
         global sess
@@ -88,13 +89,13 @@ class CCTV:
         @app.route('/')
         def index():
             #rendering webpage
-            url=request.url
+            url = requests.get("https://api.ipify.org").text+":8080"
             data = {"cctvID": "aaaa", "cctvUrl": url}
-            res = requests.post('http://3.234.220.100:8080/cctv/save', data=json.dumps(data), headers=self.headers)
-            print(res)
-
-            res = requests.post('http://3.234.220.100:8080/stock/aaaa', data=json.dumps(self.stock), headers=self.headers)
-            print(res)
+            # res = requests.post('http://3.233.241.48:8080/cctv/save', data=json.dumps(data), headers=self.headers)
+            # print(res)
+            #
+            # res = requests.post('http://3.233.241.48:8080/stock/aaaa', data=json.dumps(self.stock), headers=self.headers)
+            # print(res)
 
             return render_template('streamingWeb.html')
 
@@ -141,7 +142,7 @@ class CCTV:
             #     data = open(filename, 'rb')
             #     # api 이름이랑 파일 포맷 나중에 수정
             #     data = {"filename": data}
-            #     res = requests.post('http://3.238.53.109:8080/cctv/save', data=data, headers=self.headers)
+            #     res = requests.post('http://3.238.53.109:8080/video/aaaa/save', data=data, headers=self.headers)
             #     print(str(res.status_code) + " | " + res.text)
 
 
@@ -154,8 +155,8 @@ class CCTV:
         # 개수 달라졌는지 체크하고 달라졌으면 업데이트 후 1반환, 아니면 0 반환
         self.delta_stock = {"total": 0, "chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
         if self.update_stock(dict=obj_det_ret) == 1:
-            res = requests.post('http://3.234.220.100:8080/cctv/stock/aaaa', data=json.dumps(self.stock))
-            print(res)
+            # res = requests.post('http://3.233.241.48:8080/stock/aaaa', data=json.dumps(self.stock),headers=self.headers)
+            # print("재고 업데이트 결과 : "+res.text)
             self.bool_for_detect_action=True
 
     #개수 달라졌느지 체크하고 달라졌으면 업데이트 후 1반환, 아니면 0 반환
@@ -182,6 +183,7 @@ class CCTV:
         return file_name
 
     def detectAction(self):
+        print("detecting action")
         # 프레임 큐에 있는 프레임의 신체 좌표 추출
         joint_data = [[],[],[]]
         max_person_num =0
@@ -211,11 +213,10 @@ class CCTV:
             print("*************clip****************")
             filename=self.writeClip()
             #서버 전송
-            # data=open(filename,'rb')
-            # #api 이름이랑 파일 포맷 나중에 수정
-            # data = {"filename":data}
-            # res = requests.post('http://3.238.53.109:8080/cctv/save', data=data, headers=self.headers)
-            # print(str(res.status_code) + " | " + res.text)
+            file={'file':open(filename,'rb')}
+            #api 이름이랑 파일 포맷 나중에 수정
+            # res = requests.post('http://3.233.241.48:8080/video/aaaa/save', files=file)
+            # print("클립 전송 결과 : "+str(res.status_code) + " | " + res.text)
         # 도난 아님
         elif 2 in detect_action_result:
             print("pick upped")
