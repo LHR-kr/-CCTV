@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<!-- 웹뷰 구현하고 다시 보이게하기
     <ImageButton
-        android:id="@+id/userSidePage"
+        android:id="@+id/user_sidepage"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:backgroundTint="#00ff0000"
         android:scaleType="fitCenter"
         android:src="@drawable/mypage_button" />
+-->
 
-</LinearLayout>
+    <WebView
+        android:id="@+id/live_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ProgressBar
+        android:id="@+id/live_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

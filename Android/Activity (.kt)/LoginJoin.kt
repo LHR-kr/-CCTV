@@ -46,16 +46,16 @@ class LoginJoin : AppCompatActivity() {
 
         // 맨 밑 회원가입 버튼
         binding.loginJoinFin.setOnClickListener{
-            val data = UserRegister(binding.inputBirth.text.toString(), binding.inputEmail.text.toString(), binding.inputId.text.toString(), binding.inputName.text.toString(), binding.inputPw.text.toString(), binding.inputPhone.text.toString(), binding.inputToken.text.toString())
-            api.register_users(data).enqueue(object : Callback<PostResult> {
-                override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
+            val data = userRegister(binding.inputBirth.text.toString(), binding.inputEmail.text.toString(), binding.inputId.text.toString(), binding.inputName.text.toString(), binding.inputPw.text.toString(), binding.inputPhone.text.toString(), binding.inputToken.text.toString())
+            api.register_users(data).enqueue(object : Callback<postResult> {
+                override fun onResponse(call: Call<postResult>, response: Response<postResult>) {
                     Log.d("log",response.toString())
                     Log.d("log", response.body().toString())
                     if(!response.body().toString().isEmpty())
                         binding.text.setText(response.body().toString());
                 }
 
-                override fun onFailure(call: Call<PostResult>, t: Throwable) {
+                override fun onFailure(call: Call<postResult>, t: Throwable) {
                     // 실패
                     Log.d("log",t.message.toString())
                     Log.d("log","fail")

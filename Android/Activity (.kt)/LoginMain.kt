@@ -25,21 +25,20 @@ class LoginMain : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 맨 밑 로그인 버튼
+/*
+        // 로그인 버튼 - 회원 확인 여부 적용
         binding.login.setOnClickListener{
-            val data = UserLogin(binding.logininputId.text.toString(), binding.logininputPw.text.toString())
+            val data = userLogin(binding.logininputId.text.toString(), binding.logininputPw.text.toString())
             api.login_users(data).enqueue(object : Callback<PostResult> {
-                override fun onResponse(call: Call<PostResult>, response: Response<PostResult>) {
+                override fun onResponse(call: Call<postResult>, response: Response<postResult>) {
                     Log.d("log",response.toString())
                     Log.d("log", response.body().toString())
+*/
 /*
                     if(!response.body().toString().isEmpty())
                         binding.text.setText(response.body().toString());
-*/
-/* 로그인 성공 후 메인 화면으로 넘어가기
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-*/
+*//*
+
                 }
 
                 override fun onFailure(call: Call<PostResult>, t: Throwable) {
@@ -47,15 +46,23 @@ class LoginMain : AppCompatActivity() {
                     Log.d("log",t.message.toString())
                     Log.d("log","fail")
 
+*/
 /* 실패했을때 토스트메시지
                     Toast.makeText(this, "아이디 또는 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show()
-*/
+*//*
+
                 }
 
             })
-
-
         }
+*/
+
+        // 로그인 버튼 - 단순 화면 넘어가기
+        binding.login.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 }

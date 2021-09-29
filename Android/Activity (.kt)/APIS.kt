@@ -9,14 +9,22 @@ import retrofit2.http.*
 
 interface APIS {
 
+    // 스트리밍 url get
+    @GET("/cctv/{id}")
+    @Headers("accept: application/json",
+        "content-type: application/json")
+    fun live_get(
+        @Body VideoLive : videoLive
+    ): Call<postResult>
+
 
     // 로그인 정보 보내기
     @POST("/user/login")
     @Headers("accept: application/json",
         "content-type: application/json")
     fun login_users(
-        @Body UserLogin : UserLogin
-    ): Call<PostResult>
+        @Body UserLogin : userLogin
+    ): Call<postResult>
 
 
     // 회원가입 정보 보내기
@@ -24,8 +32,8 @@ interface APIS {
     @Headers("accept: application/json",
         "content-type: application/json")
     fun register_users(
-        @Body UserRegister : UserRegister
-    ): Call<PostResult>
+        @Body UserRegister : userRegister
+    ): Call<postResult>
 
 /*  API에 parameter가 없음..
     @GET("/user/withdrawal")
