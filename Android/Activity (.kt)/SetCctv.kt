@@ -1,11 +1,10 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.catcha.databinding.LoginCctvBinding
-import com.example.catcha.databinding.SetCctvBinding
+import com.catchyou.catcha.databinding.SetCctvBinding
 
 class SetCctv : AppCompatActivity() {
     private var mBinding: SetCctvBinding? = null

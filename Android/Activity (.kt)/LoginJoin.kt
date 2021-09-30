@@ -1,4 +1,4 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.example.catcha.databinding.LoginJoinBinding
-import com.example.catcha.databinding.UserSidepageBinding
+import com.catchyou.catcha.databinding.LoginJoinBinding
+import com.catchyou.catcha.databinding.UserSidepageBinding
 import com.mongodb.*
 import retrofit2.Call
 import retrofit2.Callback

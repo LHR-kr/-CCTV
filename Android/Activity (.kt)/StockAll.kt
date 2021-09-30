@@ -1,9 +1,9 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.catcha.databinding.StockAllBinding
+import com.catchyou.catcha.databinding.StockAllBinding
 
 class StockAll : AppCompatActivity() {
     private var mBinding: StockAllBinding? = null

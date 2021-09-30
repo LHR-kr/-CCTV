@@ -1,9 +1,9 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.catcha.databinding.UserSidepageBinding
+import com.catchyou.catcha.databinding.UserSidepageBinding
 
 class UserSidePage : AppCompatActivity() {
     private var mBinding: UserSidepageBinding? = null

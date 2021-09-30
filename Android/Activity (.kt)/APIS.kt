@@ -1,4 +1,4 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -14,7 +14,7 @@ interface APIS {
     @Headers("accept: application/json",
         "content-type: application/json")
     fun live_get(
-        @Body VideoLive : videoLive
+        @Query("url") liveUrl : String
     ): Call<postResult>
 
 

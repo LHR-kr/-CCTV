@@ -1,17 +1,15 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.catcha.databinding.ActivityMainBinding
-import com.example.catcha.databinding.AlarmListBinding
+import com.catchyou.catcha.databinding.AlarmListBinding
+import com.catchyou.catcha.databinding.VideoLiveBinding
 
 class AlarmList : AppCompatActivity() {
-    private var mBinding: AlarmListBinding? = null
-    private val binding get() = mBinding!!
+    val binding by lazy { VideoLiveBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = AlarmListBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }

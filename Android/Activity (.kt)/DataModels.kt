@@ -1,4 +1,4 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 // 결과값(통신 성공/실패 여부) 반환
 data class postResult(

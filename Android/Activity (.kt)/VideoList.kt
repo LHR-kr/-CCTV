@@ -1,4 +1,4 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.catcha.databinding.ActivityMainBinding
-import com.example.catcha.databinding.VideoListBinding
+import com.catchyou.catcha.databinding.ActivityMainBinding
+import com.catchyou.catcha.databinding.VideoListBinding
 
 class VideoList : AppCompatActivity() {
     private lateinit var binding: VideoListBinding

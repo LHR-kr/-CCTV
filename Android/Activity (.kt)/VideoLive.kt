@@ -1,14 +1,17 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.catcha.databinding.VideoLiveBinding
+import com.catchyou.catcha.databinding.VideoLiveBinding
 import android.os.SystemClock
 import android.webkit.WebView
 import android.widget.ProgressBar
-import com.example.catcha.databinding.LoginJoinBinding
+import com.catchyou.catcha.databinding.LoginJoinBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -43,8 +46,26 @@ class VideoLive : AppCompatActivity() {
 
         }*/
 
+/*
         val myWebView: WebView = binding.liveWebview
-        myWebView.loadUrl("http://www.example.com")
+        myWebView.loadUrl(url)
+
+        val data = videoLive(binding.inputBirth.text.toString())
+        api.register_users(data).enqueue(object : Callback<postResult> {
+            override fun onResponse(call: Call<postResult>, response: Response<postResult>) {
+                Log.d("log",response.toString())
+                Log.d("log", response.body().toString())
+                if(!response.body().toString().isEmpty())
+                    binding.text.setText(response.body().toString());
+            }
+
+            override fun onFailure(call: Call<postResult>, t: Throwable) {
+                // 실패
+                Log.d("log",t.message.toString())
+                Log.d("log","fail")
+            }
+        })
+*/
 
 
 

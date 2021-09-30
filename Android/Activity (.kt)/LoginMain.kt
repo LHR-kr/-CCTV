@@ -1,12 +1,12 @@
-package com.example.catcha
+package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.catcha.databinding.LoginJoinBinding
-import com.example.catcha.databinding.LoginMainBinding
+import com.catchyou.catcha.databinding.LoginJoinBinding
+import com.catchyou.catcha.databinding.LoginMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
