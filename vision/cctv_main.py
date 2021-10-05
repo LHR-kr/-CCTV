@@ -29,7 +29,6 @@ class CCTV:
         self.frame_queue = []
 
         #임의로 테스트용으로 함, 나중에 변경
-        #self.camera = cv2.VideoCapture("./video/kakaoTalk_20210709_155435322.mp4")
         self.camera = cv2.VideoCapture("./video/b.mp4")
         # 이미지 해상도 변경
         self.camera.set(3, int(960))
@@ -49,6 +48,8 @@ class CCTV:
         self.id_count = 0
         #고객이 가져간 물건들을 저장하는 딕셔너리, 이중 딕셔너리?
         self.pick_upped={}
+        #cnt가 0되면 화면에서 사라졌다고 판단
+        self.cnt_for_finding_person={}
 
         self.cnt=20
         self.bool_for_detect_action=False
@@ -84,6 +85,8 @@ class CCTV:
                 with graph.as_default():
                     set_session(sess)
                     self.work()
+            self.camera.release()
+            self.writer.release()
             print("end")
 
         @app.route('/')
@@ -133,6 +136,9 @@ class CCTV:
             print(str(id) + " : " + str(self.pick_upped[id]))
 
         for id in cant_detected:
+            if self.cnt_for_finding_person[id]>0:
+                self.cnt_for_finding_person[id]=self.cnt_for_finding_person[id]-1
+                continue
             pick_upped=self.pick_upped.pop(id)
             #최근 결제 내역 가져와서 비교하기
             #결제 내역과 pick_upped가 다르면 클립 저장하고 서버에 알리기
@@ -254,11 +260,12 @@ class CCTV:
                 #조건 식만 바꾸면 된다
                 dist = math.hypot(cx - pt[0], cy - pt[1])
                 # 거리가 일정 값 미만이면 같은 물체로 취급하여 아이디, 중심좌표 저장하고 이 물체에 대한 트랙킹 종료
-                if dist < 25:
+                if dist < 80:
                     self.center_points.pop(id)
                     # 배열에 임시 저장
                     objects_bbs_ids.append([x, y, w, h, id])
                     same_object_detected = True
+                    self.cnt_for_finding_person[id]=20
                     break
 
             # 만약 이전 프레임에서 찾지 못했다면 새롭게 아이디 등록
@@ -267,6 +274,7 @@ class CCTV:
                 objects_bbs_ids.append([x, y, w, h, self.id_count])
                 #이 사람의 장바구니
                 self.pick_upped[self.id_count]={"chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
+                self.cnt_for_finding_person[self.id_count]=20
                 self.id_count += 1
 
         # Clean the dictionary by center points to remove IDS not used anymore
