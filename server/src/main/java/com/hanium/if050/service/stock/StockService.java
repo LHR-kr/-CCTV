@@ -4,6 +4,7 @@ import com.hanium.if050.domain.stock.Stock;
 import com.hanium.if050.domain.stock.StockRepository;
 import com.hanium.if050.web.dto.StockSaveRequestDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ public class StockService {
         this.stockRepository = stockRepository;
     }
 
+    @Transactional
     public String stockSave(String id,StockSaveRequestDto requestDto) {
         Optional<Stock> stock = stockRepository.findById(id);
 
@@ -32,6 +34,7 @@ public class StockService {
 
     }
 
+    @Transactional
     public Stock find(String id) {
         Optional<Stock> stock = stockRepository.findById(id);
 

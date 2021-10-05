@@ -5,8 +5,8 @@ import com.hanium.if050.domain.cctv.CctvRepository;
 import com.hanium.if050.web.dto.CctvSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @RequiredArgsConstructor
