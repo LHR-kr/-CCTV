@@ -31,6 +31,7 @@ class LoginJoin : AppCompatActivity() {
 
         // 비밀번호 일치 확인
         binding.inputPwpwCheck.setOnClickListener{
+            // 정규표현식 제대로 쓰기
             val regex = "([a-zA-Z]{1,}|[0-9]{1,})]".toRegex()
             var inputpw1 = binding.inputPw.getText().toString()
             var inputpw2 = binding.inputPwpw.getText().toString()
