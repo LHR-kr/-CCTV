@@ -3,47 +3,54 @@ package com.catchyou.catcha
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.catchyou.catcha.databinding.StockAllBinding
 import com.catchyou.catcha.databinding.VideoListBinding
 
 class VideoList : AppCompatActivity() {
-    private lateinit var binding: VideoListBinding
+    val binding by lazy { VideoListBinding.inflate(layoutInflater) }
 
-    lateinit var videoListAdapter: VideoListAdapter
-    val datas = mutableListOf<VideoItemData>()
+    //adapter객체 먼저 선언해주기!
+    private lateinit var adapter : VideoListAdapter
+
+    val mDatas = mutableListOf<VideoListData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        initRecycler()
 
         binding.userSidePage.setOnClickListener{
             val intent = Intent(this, UserSidePage::class.java)
             startActivity(intent)
         }
 
+        initializelist()
+        initVideoListRecyclerView()
+
 
     }
 
-    private fun initRecycler() {
-        videoListAdapter = VideoListAdapter(this)
-        binding.itemsVideo.adapter = videoListAdapter
+    fun initVideoListRecyclerView(){
+        val adapter = VideoListAdapter() //어댑터 객체 만듦
+        adapter.datalist=mDatas //데이터 넣어줌
+        binding.recyclerViewVideo.adapter=adapter //리사이클러뷰에 어댑터 연결
+        binding.recyclerViewVideo.layoutManager= LinearLayoutManager(this) //레이아웃 매니저 연결
+    }
 
-
-        datas.apply {
-            add(VideoItemData(videoPic = R.drawable.sample1, videoName = "한이음", videoDate = "2021-01-01"))
-            add(VideoItemData(videoPic = R.drawable.sample2, videoName = "이브와", videoDate = "2021-01-01"))
-            add(VideoItemData(videoPic = R.drawable.sample1, videoName = "프로보노", videoDate = "2021-01-01"))
-            add(VideoItemData(videoPic = R.drawable.sample3, videoName = "한이음", videoDate = "2021-01-01"))
-            add(VideoItemData(videoPic = R.drawable.sample2, videoName = "이브와", videoDate = "2021-01-01"))
-
-            videoListAdapter.datas = datas
-            videoListAdapter.notifyDataSetChanged()
-
+    fun initializelist() { //임의로 데이터 넣어서 만들어봄
+        with(mDatas) {
+            add(VideoListData(0, "한이음가게", "2021-01-01"))
+            add(VideoListData(0, "이브와가게", "2021-05-17"))
+            add(VideoListData(0, "한이음가게", "2021-01-01"))
+            add(VideoListData(0, "이브와가게", "2021-05-17"))
+            add(VideoListData(0, "한이음가게", "2021-01-01"))
+            add(VideoListData(0, "이브와가게", "2021-05-17"))
+            add(VideoListData(0, "한이음가게", "2021-01-01"))
+            add(VideoListData(0, "이브와가게", "2021-05-17"))
+            add(VideoListData(0, "한이음가게", "2021-01-01"))
+            add(VideoListData(0, "이브와가게", "2021-05-17"))
         }
+
     }
 
 }
