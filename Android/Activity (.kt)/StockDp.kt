@@ -53,26 +53,10 @@ class StockDp : AppCompatActivity() {
 
     fun initializelist() { //임의로 데이터 넣어서 만들어봄
         with(mDatas) {
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
-            add(StockDpData("사과", "35", "2222-8888"))
-            add(StockDpData("바나나", "7", "9999-0000"))
+            add(StockDpData("마가레트", "2", "8801051099553"))
+            add(StockDpData("몽쉘", "8", "6924513900067"))
+            add(StockDpData("초코파이", "6", "9791157675807"))
+            add(StockDpData("프렌치파이", "4", "8809629360500"))
         }
 
     }

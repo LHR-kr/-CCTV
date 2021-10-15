@@ -13,6 +13,7 @@ class StockAllAdapter : RecyclerView.Adapter<StockAllAdapter.MyViewHolder>() {
     inner class MyViewHolder(private val binding: StockAllItemBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(stockAllData:StockAllData){
+            binding.stockAllMarket.text = stockAllData.marketName.toString()
             binding.stockAllName.text = stockAllData.stockAllName.toString()
             binding.stockAllDpStock.text = stockAllData.stockAllDpStock.toString()
             binding.stockAllAllStock.text = stockAllData.stockAllAllStock.toString()

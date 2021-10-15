@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toStartOf="@+id/video_down"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sample1" />
+        app:srcCompat="@drawable/main_suspect_sample" />
 
     <TextView
         android:id="@+id/video_name"

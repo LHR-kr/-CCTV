@@ -60,7 +60,7 @@
                 android:textSize="18dp"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView_card"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recentSuspectVideo" />
+                app:layout_constraintTop_toBottomOf="@+id/recent_suspect_video" />
 
             <Button
                 android:id="@+id/liveVideo"
@@ -71,11 +71,11 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
                 android:backgroundTint="#FFFFFF"
-                android:text="> 실시간 보기"
+                android:text="실시간 CCTV"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/recentSuspectVideo"
-                app:layout_constraintTop_toBottomOf="@+id/recentSuspectVideo" />
+                app:layout_constraintStart_toStartOf="@+id/recent_suspect_video"
+                app:layout_constraintTop_toBottomOf="@+id/recent_suspect_video" />
 
             <View
                 android:id="@+id/view2"
@@ -102,12 +102,11 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:backgroundTint="#FFFFFF"
-                android:text="> 영상 목록"
+                android:text="영상 목록"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/recentSuspectVideo"
-                app:layout_constraintTop_toBottomOf="@+id/recentSuspectVideo"
-                tools:layout_editor_absoluteY="314dp" />
+                app:layout_constraintEnd_toEndOf="@+id/recent_suspect_video"
+                app:layout_constraintTop_toBottomOf="@+id/recent_suspect_video" />
 
             <Button
                 android:id="@+id/dpStock"
@@ -117,7 +116,7 @@
                 android:layout_marginEnd="3dp"
                 android:layout_marginRight="3dp"
                 android:backgroundTint="#FFFFFF"
-                android:text="> 매장 재고 관리"
+                android:text="매장 재고 관리"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +138,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/recentSuspectVideo"
+                android:id="@+id/recent_suspect_video"
                 android:layout_width="0dp"
                 android:layout_height="258dp"
                 android:layout_gravity="center"
@@ -153,6 +152,7 @@
                 android:src="@drawable/main_suspect_sample"
                 app:layout_constraintBottom_toBottomOf="@+id/videoList"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -178,12 +178,13 @@
                 android:layout_marginEnd="23dp"
                 android:layout_marginRight="23dp"
                 android:backgroundTint="#FFFFFF"
-                android:text="> 전체 재고 관리"
+                android:text="전체 재고 관리"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/dpStock"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_card" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

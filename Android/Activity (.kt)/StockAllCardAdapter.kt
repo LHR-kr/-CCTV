@@ -15,7 +15,7 @@ class StockAllCardAdapter : RecyclerView.Adapter<StockAllCardAdapter.MyViewHolde
 
         fun bind(stockAllCardData:StockAllCardData){
             // 이미지 넘기는 방법 찾으면 바꾸기 ㅠ
-            binding.stockAllCardImg.setImageResource(R.drawable.stock_all_card_sample)
+            binding.stockAllCardImg.setImageResource(R.drawable.pie_sample)
 
             binding.stockAllCardDp.text = stockAllCardData.stockAllCardDp.toString()
             binding.stockAllCardAll.text = stockAllCardData.stockAllCardAll.toString()

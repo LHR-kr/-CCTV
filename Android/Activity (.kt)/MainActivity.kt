@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.recentSuspectVideo.setOnClickListener{
+            val intent = Intent(this, TestClip::class.java)
+            startActivity(intent)
+        }
+
 /*
         binding.liveVideo.setOnClickListener{
             val intent = Intent(this, VideoLive::class.java)
@@ -60,10 +65,10 @@ class MainActivity : AppCompatActivity() {
 
     fun initializeCardlist() { //임의로 데이터 넣어서 만들어봄
         with(mDatas) {
-            add(StockAllCardData(0,"1","20",))
-            add(StockAllCardData(0,"20","400",))
-            add(StockAllCardData(0,"5","5",))
-            add(StockAllCardData(0,"3","12",))
+            add(StockAllCardData(0,"6","10",))
+            add(StockAllCardData(0,"5","15",))
+            add(StockAllCardData(0,"2","20",))
+            add(StockAllCardData(0,"7","15",))
         }
 
     }

@@ -39,16 +39,16 @@ class VideoList : AppCompatActivity() {
 
     fun initializelist() { //임의로 데이터 넣어서 만들어봄
         with(mDatas) {
-            add(VideoListData(0, "한이음가게", "2021-01-01"))
-            add(VideoListData(0, "이브와가게", "2021-05-17"))
-            add(VideoListData(0, "한이음가게", "2021-01-01"))
-            add(VideoListData(0, "이브와가게", "2021-05-17"))
-            add(VideoListData(0, "한이음가게", "2021-01-01"))
-            add(VideoListData(0, "이브와가게", "2021-05-17"))
-            add(VideoListData(0, "한이음가게", "2021-01-01"))
-            add(VideoListData(0, "이브와가게", "2021-05-17"))
-            add(VideoListData(0, "한이음가게", "2021-01-01"))
-            add(VideoListData(0, "이브와가게", "2021-05-17"))
+            add(VideoListData(0, "이브와가게", "2021-10-16"))
+            add(VideoListData(0, "이브와가게", "2021-10-15"))
+            add(VideoListData(0, "한이음가게", "2021-10-14"))
+            add(VideoListData(0, "프로보노가게", "2021-10-10"))
+            add(VideoListData(0, "한이음가게", "2021-10-01"))
+            add(VideoListData(0, "이브와가게", "2021-09-28"))
+            add(VideoListData(0, "프로보노가게", "2021-09-26"))
+            add(VideoListData(0, "이브와가게", "2021-09-03"))
+            add(VideoListData(0, "한이음가게", "2021-09-01"))
+            add(VideoListData(0, "이브와가게", "2021-08-26"))
         }
 
     }

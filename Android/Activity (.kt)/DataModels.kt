@@ -25,3 +25,29 @@ data class userLogin(
 data class videoLive(
     var url : String
 )
+
+data class StockAllCardData (
+    var stockAllCardImg : Int,
+    var stockAllCardDp : String,
+    var stockAllCardAll : String
+)
+
+data class StockAllData (
+    var marketName : String,
+    var stockAllName : String,
+    var stockAllDpStock : String,
+    var stockAllAllStock : String,
+    var stockAllCode : String,
+)
+
+data class VideoListData (
+    var videoImg : Int,
+    var videoName : String,
+    var videoDate : String
+)
+
+data class StockDpData (
+    var stockDpName : String,
+    var stockDpDpStock : String,
+    var stockDpCode : String,
+)

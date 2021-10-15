@@ -51,10 +51,10 @@ class StockAll : AppCompatActivity() {
 
     fun initializeCardlist() { //임의로 데이터 넣어서 만들어봄
         with(mDatas) {
-            add(StockAllCardData(0,"1","20",))
-            add(StockAllCardData(0,"20","400",))
-            add(StockAllCardData(0,"5","5",))
-            add(StockAllCardData(0,"3","12",))
+            add(StockAllCardData(0,"6","10",))
+            add(StockAllCardData(0,"5","15",))
+            add(StockAllCardData(0,"2","20",))
+            add(StockAllCardData(0,"7","15",))
         }
 
     }
@@ -68,22 +68,23 @@ class StockAll : AppCompatActivity() {
 
     fun initializeStockAlllist() { //임의로 데이터 넣어서 만들어봄
         with(mDatas2) {
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
-            add(StockAllData("수박", "30", "10", "AAAA-8888"))
-            add(StockAllData("메론", "5", "200", "SSSS-6666"))
+            add(StockAllData("이브와", "마가레트", "2", "10", "8801051099553"))
+            add(StockAllData("프로보노","마가레트", "5", "20", "8801051099553"))
+            add(StockAllData("한이음", "마가레트", "1", "35", "8801051099553"))
+            add(StockAllData("무명", "마가레트", "2", "40", "8801051099553"))
+            add(StockAllData("이브와", "몽쉘", "8", "10", "6924513900067"))
+            add(StockAllData("프로보노", "몽쉘", "7", "15","6924513900067"))
+            add(StockAllData("한이음", "몽쉘", "3", "10", "6924513900067"))
+            add(StockAllData("무명", "몽쉘", "5", "30", "6924513900067"))
+            add(StockAllData("이브와", "초코파이", "6", "10", "9791157675807"))
+            add(StockAllData("프로보노", "초코파이", "5", "15", "9791157675807"))
+            add(StockAllData("한이음", "초코파이", "2", "20", "9791157675807"))
+            add(StockAllData("무명", "초코파이", "7", "15","9791157675807"))
+            add(StockAllData("이브와", "프렌치파이", "4", "20", "8809629360500"))
+            add(StockAllData("프로보노", "프렌치파이", "9", "30", "8809629360500"))
+            add(StockAllData("한이음", "프렌치파이", "8", "35", "8809629360500"))
+            add(StockAllData("무명", "프렌치파이", "8", "10","8809629360500"))
+
         }
 
     }

@@ -1,11 +1,13 @@
 package com.catchyou.catcha
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.catchyou.catcha.databinding.StockDpItemBinding
@@ -19,10 +21,17 @@ class VideoListAdapter : RecyclerView.Adapter<VideoListAdapter.MyViewHolder>() {
 
         fun bind(videoListData : VideoListData){
             // 이미지 넘기는 방법 찾으면 바꾸기 ㅠ
-            binding.videoImg.setImageResource(R.drawable.sample2)
+            binding.videoImg.setImageResource(R.drawable.main_suspect_sample)
 
             binding.videoName.text = videoListData.videoName.toString()
             binding.videoDate.text = videoListData.videoDate.toString()
+
+/*
+            binding.videoPlay.setOnClickListener{
+                val intent = Intent(this, UserSidePage::class.java)
+                startActivity(intent)
+            }
+*/
         }
     }
 

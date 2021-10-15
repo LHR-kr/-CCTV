@@ -6,7 +6,7 @@ import com.catchyou.catcha.databinding.AlarmListBinding
 import com.catchyou.catcha.databinding.VideoLiveBinding
 
 class AlarmList : AppCompatActivity() {
-    val binding by lazy { VideoLiveBinding.inflate(layoutInflater) }
+    val binding by lazy { AlarmListBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
