@@ -1,22 +1,15 @@
 package com.catchyou.catcha
 
 import android.content.Intent
+import android.media.MediaPlayer.OnPreparedListener
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.catchyou.catcha.databinding.VideoLiveBinding
-import android.os.SystemClock
-import android.webkit.WebView
-import android.widget.ProgressBar
-import com.catchyou.catcha.databinding.LoginJoinBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.concurrent.thread
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class VideoLive : AppCompatActivity() {
     val binding by lazy { VideoLiveBinding.inflate(layoutInflater) }
@@ -27,15 +20,30 @@ class VideoLive : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // sample.mp4 설정
+        val uri: Uri = Uri.parse("android.resource://$packageName/raw/streaming")
+        binding.videoView.setVideoURI(uri)
 
+        binding.videoView.setOnPreparedListener {
+            // 스트리밍이니까 준비 완료 말해줄 필요 없을듯..
+            // Toast.makeText(applicationContext, "동영상 재생 준비 완료", Toast.LENGTH_SHORT).show()
+            binding.videoView.start()
+        }
 
-/*
+/* 완료된거 굳이 보여줄 필요 없으니까..
+        binding.videoView.setOnCompletionListener {
+            Toast.makeText(applicationContext, "동영상 시청 완료", Toast.LENGTH_SHORT).show()
+        }
+*/
+
         // 유저사이드 버튼
         binding.userSidepage.setOnClickListener {
             val intent = Intent(this, UserSidePage::class.java)
             startActivity(intent)
         }
-*/
+
+        // 실시간 시간
+        binding.liveTime.setText(getTime())
 
         /* 잠깐만 주석처리 0929
         binding.liveWebview.apply {
@@ -66,11 +74,14 @@ class VideoLive : AppCompatActivity() {
             }
         })
 */
+    }
 
-
-
-
+    fun getTime() : String {
+        val now =  System.currentTimeMillis()
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN).format(now)
+        return simpleDateFormat
 
     }
-}
 
+
+}

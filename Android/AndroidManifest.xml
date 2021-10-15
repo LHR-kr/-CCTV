@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.catchyou.catcha">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    // 토큰 자동 생성 방지 (자동 초기화 사용 중지)
+    <meta-data
+        android:name="firebase_messaging_auto_init_enabled"
+        android:value="false" />
+    <meta-data
+        android:name="firebase_analytics_collection_enabled"
+        android:value="false" />
+
+    <!-- android:usesCleartextTraffic="true" : http 통신을 허가해주는 설정-->
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_cat"
+        android:label="CATCHA"
+        android:roundIcon="@mipmap/ic_cat_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".LoginMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginJoin">
+        </activity>
+        <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".UserSidePage">
+        </activity>
+        <activity android:name=".StockAll">
+        </activity>
+        <activity android:name=".StockDp">
+        </activity>
+        <activity android:name=".VideoList">
+        </activity>
+        <activity android:name=".VideoLive"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize">// 화면가로 고정, 회전해도 상태 유지
+        </activity>
+        <activity android:name=".LoginCctv">
+        </activity>
+        <activity android:name=".SetCctv">
+        </activity>
+        <activity android:name=".AlarmList">
+        </activity>
+
+
+
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+    </application>
+
+</manifest>
