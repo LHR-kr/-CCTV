@@ -24,7 +24,7 @@ class ai_model:
         self.frame_queue = []
 
         # 임의로 테스트용으로 함, 나중에 변경
-        self.camera = cv2.VideoCapture("./video/this3.mp4")
+        self.camera = cv2.VideoCapture(0)
         # 이미지 해상도 변경
         self.camera.set(3, int(960))
         self.camera.set(4, int(540))
