@@ -3,6 +3,9 @@ from tensorflow.keras.layers import Dense, LSTM, TimeDistributed
 from tensorflow.keras.models import Sequential,load_model
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.optimizers import Adam
+
+from math import hypot
+
 class LSTM_MODEL:
     def __init__(self):
         self.model=self.build()
@@ -60,21 +63,38 @@ class LSTM_MODEL:
         print(Y)
         self.model.fit(X,Y,epochs=epoch,batch_size=3)
         self.save()
-    def predict(self,data,max_person_num):
+    def predict(self,data,sorted_center_points):
         #data는 [사람 수 <= 3 ][프레임 40 ][데이터 22]
         #일단 최대 세사람
         ret=[0,0,0]
-        for i in range (max_person_num):
+        n=len(sorted_center_points)
+        for i in range (3):
             personal_data=np.reshape(data[i],(1,40,22))
             result=self.model.predict(personal_data)
             print(result)
-            if result[0][1]>0.1 or result[0][2]>0.1:
+            if result[0][1]>0.08 or result[0][2]>0.08:
                 if result[0][1]>result[0][2]:
                     ret[i]=1
                 else:
                     ret[i]=2
         print(ret)
-        return ret
+        ret2={}
+        for id in sorted_center_points:
+            distant=99999
+            j=100
+            for i in range(3):
+                dx=data[i][39][0]-sorted_center_points[id][0]*1920/640
+                dy=data[i][39][1]-sorted_center_points[id][1]*1080/480
+                temp=hypot(dx,dy)
+                print(temp)
+                if(temp<distant):
+                    distant=temp
+                    j=i
+                    print(j)
+            ret2[id]=ret[j]
+        print(ret2)
+        return ret2
+
 
     def pre(self,data):
         print("predict start")
