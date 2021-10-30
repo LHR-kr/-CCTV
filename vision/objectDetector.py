@@ -3,7 +3,7 @@ from darkflow.net.build import TFNet
 class CNN_Model:
     def __init__(self):
         #여기 나중에 수정
-        self.options = {"pbLoad": "../../darkflow/built_graph/my-tiny-yolo.pb", "metaLoad": "../../darkflow/built_graph/my-tiny-yolo.meta", "threshold": 0.3,
+        self.options = {"pbLoad": "./my-tiny-yolo.pb", "metaLoad": "./my-tiny-yolo.meta", "threshold": 0.3,
                      "labels" : "./darkflow/labels.txt"}
         self.tfnet=TFNet(self.options)
 
