@@ -18,16 +18,17 @@ class ai_model:
     def __init__(self):
 
         self.frame = None
-        self.delta_stock = {"total": 0, "chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
+        self.delta_stock = {"chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
         # 시작 전에 개수 초기화 해야 함
         self.stock = {"total": 5, "chocopie": 1, "frenchpie": 2, "margaret": 0, "moncher": 2}
         self.frame_queue = []
 
         # 임의로 테스트용으로 함, 나중에 변경
-        self.camera = cv2.VideoCapture(0)
-        # 이미지 해상도 변경
-        self.camera.set(3, int(960))
-        self.camera.set(4, int(540))
+        self.camera = cv2.VideoCapture("./video/a_.mp4")
+        #self.camera = cv2.VideoCapture(0)
+
+        self.camera.set(3, int(640))
+        self.camera.set(4, int(480))
 
         self.width = (self.camera.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.height = (self.camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -46,8 +47,8 @@ class ai_model:
         # cnt가 0되면 화면에서 사라졌다고 판단
         self.cnt_for_finding_person = {}
 
-        self.cnt = 20
-        self.bool_for_detect_action = False
+        self.cnt = 15
+
 
         self.headers = {'Content-Type': 'application/json; chearset=utf-8'}
         self.video_headers = {'Content-Type': 'multipart/form-data; chearset=utf-8'}
@@ -67,14 +68,9 @@ class ai_model:
         self.frame_queue.append(self.frame)
         if len(self.frame_queue) > 60:
             self.frame_queue.pop(0)
-        if self.bool_for_detect_action == True:
-            self.cnt -= 1
 
-        # 동작인식
-        if self.cnt == 0:
-            self.detectAction()
-            self.cnt = 15
-            self.bool_for_detect_action = False
+
+
 
         # CNN
         obj_det_ret, person_num, person_bounding_boxes = self.CNN_model.detect(self.frame)
@@ -113,14 +109,21 @@ class ai_model:
         if person_num > 0:
             # 사람이 있고 물건 개수 변함
             # 개수 달라졌는지 체크하고 달라졌으면 업데이트 후 1반환, 아니면 0 반환
-            self.delta_stock = {"total": 0, "chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
+            self.delta_stock = {"chocopie": 0, "frenchpie": 0, "margaret": 0, "moncher": 0}
             result_update_stock = self.update_stock(dict=obj_det_ret)
             if result_update_stock == 1:
                 # res = requests.post('http://3.233.241.48:8080/stock/aaaa', data=json.dumps(self.stock),headers=self.headers)
                 # print("재고 업데이트 결과 : "+res.text)
-                self.bool_for_detect_action = True
+                self.cnt-=1
             elif self.update_stock(dict=obj_det_ret) == 2:
+                self.cnt=15
                 self.stock = obj_det_ret
+
+            #만약 재고가 줄어든 상태가 15프레임 이상 지속되면 재고 사라진 걸로 판단.
+            if self.cnt == 0:
+                self.detectAction()
+                self.cnt = 15
+                self.stock.update(obj_det_ret)
 
         print("stock : " + str(self.stock))
         print("==============================================================================")
@@ -134,17 +137,10 @@ class ai_model:
         ret = 0
         for name in ('chocopie', 'frenchpie', 'margaret', 'moncher'):
             if dict[name] < self.stock[name]:
-                ret = 1
                 self.delta_stock[name] = self.delta_stock[name] + (self.stock[name] - dict[name])
-
-        if ret == 1:
-            self.stock.update(dict)
-            return 1
+                return 1
         else:
-            for name in ('chocopie', 'frenchpie', 'margaret', 'moncher'):
-                if dict[name] > self.stock[name]:
-                    ret = 2
-        return ret
+             return 2
 
     # 클립 작성 이상 없음
     def writeClip(self):
@@ -168,6 +164,7 @@ class ai_model:
         # 끝에 40프레임만 입력
         for frame in self.frame_queue[-40:]:
             # body detector의 리턴값 모양은 [사람 수 <=3][좌표데이터]
+            # 1920 * 1080 기준은로 나옴
             detect_body_result = self.body_detector.detectBody(frame)
             # 목 위치 기준 왼쪽부터 정렬
             detect_body_result.sort(key=lambda x: x[0])
@@ -185,6 +182,7 @@ class ai_model:
         # joint_data는 [사람 수<=3][frame 40][좌표데이터 22]이다
         # 추출한 좌표를 lstm에 입력하고 도난 판단
 
+        #joint data는 1920*1080, sorted center는 화면 해상도
         detect_action_result = self.LSTM_model.predict(joint_data, sorted_center_points)
         for id in detect_action_result:
             if detect_action_result[id] == 1:  # 도난임
@@ -200,10 +198,12 @@ class ai_model:
                 print("pick upped")
                 # 물건 고른 거니까 개수 증가
                 print(id)
-                self.pick_upped[id] = self.delta_stock
+                for name in ('chocopie', 'frenchpie', 'margaret', 'moncher'):
+                     self.pick_upped[id][name]=self.pick_upped[id][name]+self.delta_stock[name]
             else:
                 return
 
+    #화면 해상도 기준
     def person_update(self, objects_rect):
         # 인자는 이차원 배열이다.
         # 아이디와 중심좌표 임시로 저장하는 이차원 배열
@@ -228,7 +228,7 @@ class ai_model:
                 # 조건 식만 바꾸면 된다
                 dist = math.hypot(cx - pt[0], cy - pt[1])
                 # 거리가 일정 값 미만이면 같은 물체로 취급하여 아이디, 중심좌표 저장하고 이 물체에 대한 트랙킹 종료
-                if dist < 80:
+                if dist < 50:
                     self.center_points.pop(id)
                     # 배열에 임시 저장
                     objects_bbs_ids.append([x, y, w, h, id])
