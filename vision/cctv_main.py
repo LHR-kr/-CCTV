@@ -12,6 +12,7 @@ import requests
 
 
 
+#실질적인 메임 함수, 스트리밍하고 ai, 데이터 처리
 
 app = Flask(__name__)
 
