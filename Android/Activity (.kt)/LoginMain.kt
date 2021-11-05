@@ -1,5 +1,6 @@
 package com.catchyou.catcha
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.catchyou.catcha.databinding.LoginJoinBinding
 import com.catchyou.catcha.databinding.LoginMainBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +21,7 @@ class LoginMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
 
 
         binding.loginJoin.setOnClickListener{
@@ -61,7 +65,28 @@ class LoginMain : AppCompatActivity() {
         binding.login.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+
+            Toast.makeText(applicationContext, "로그인 완료!", Toast.LENGTH_LONG).show()
+
         }
+
+        // 토큰 토스트 메시지로 띄우기
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("FCM", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            val msg = token.toString()
+            Log.d("FCM", msg)
+            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+        })
+
+
 
     }
 

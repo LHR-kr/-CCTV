@@ -2,16 +2,21 @@ package com.catchyou.catcha
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.catchyou.catcha.databinding.StockDpBinding
 
 class StockDp : AppCompatActivity() {
-    private var mBinding: StockDpBinding? = null
-    private val binding get() = mBinding!!
+    val binding by lazy { StockDpBinding.inflate(layoutInflater) }
+
+    //adapter객체 먼저 선언해주기!
+    private lateinit var adapter:StockDpAdapter
+
+    val mDatas = mutableListOf<StockDpData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = StockDpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.userSidePage.setOnClickListener({
@@ -19,19 +24,40 @@ class StockDp : AppCompatActivity() {
             startActivity(intent)
         })
 
-        binding.userSidePage.setOnClickListener{
-            val intent = Intent(this, UserSidePage::class.java)
-            startActivity(intent)
+
+        // 정렬 스피너
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.listset_array,
+            R.layout.stock_dp_spinner_listset
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            binding.spinnerListset.adapter = adapter
         }
 
-        binding.dpMenu.setOnClickListener{
-            // 메뉴형으로 배열 변경
-        }
 
-        binding.dpList.setOnClickListener{
-            // 목록형으로 배열 변경
-        }
+        initializelist()
+        initStockDpRecyclerView()
 
     }
 
+    fun initStockDpRecyclerView(){
+        val adapter=StockDpAdapter() //어댑터 객체 만듦
+        adapter.datalist=mDatas //데이터 넣어줌
+        binding.recyclerView2.adapter=adapter //리사이클러뷰에 어댑터 연결
+        binding.recyclerView2.layoutManager= LinearLayoutManager(this) //레이아웃 매니저 연결
+    }
+
+    fun initializelist() { //임의로 데이터 넣어서 만들어봄
+        with(mDatas) {
+            add(StockDpData("마가레트", "2", "8801051099553"))
+            add(StockDpData("몽쉘", "8", "6924513900067"))
+            add(StockDpData("초코파이", "6", "9791157675807"))
+            add(StockDpData("프렌치파이", "4", "8809629360500"))
+        }
+
+    }
 }

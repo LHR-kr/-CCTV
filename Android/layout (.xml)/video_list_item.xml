@@ -5,90 +5,98 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+
+    <ImageView
+        android:id="@+id/video_play"
+        android:layout_width="23sp"
+        android:layout_height="23sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/video_img"
+        app:srcCompat="@drawable/video_play"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/video_down"
+        android:layout_width="0dp"
+        android:layout_height="25sp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginRight="89dp"
+        android:layout_marginBottom="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/video_img"
+        app:srcCompat="@drawable/video_down"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/video_del"
+        android:layout_width="25sp"
+        android:layout_height="25sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/video_del"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/video_img"
+        android:layout_width="160dp"
+        android:layout_height="128sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginRight="95dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/video_down"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:srcCompat="@drawable/main_suspect_sample" />
 
-        <ImageView
-            android:id="@+id/video_play"
-            android:layout_width="23sp"
-            android:layout_height="23sp"
-            app:srcCompat="@drawable/video_play"
-            tools:layout_editor_absoluteX="203dp"
-            tools:layout_editor_absoluteY="98dp"
-            tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/video_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:text="가게이름"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/video_img"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/video_down"
-            android:layout_width="25sp"
-            android:layout_height="25sp"
-            app:srcCompat="@drawable/video_down"
-            tools:layout_editor_absoluteX="259dp"
-            tools:layout_editor_absoluteY="98dp"
-            tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/video_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="0000-00-00"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/video_img"
+        app:layout_constraintTop_toBottomOf="@+id/video_name"
+        tools:ignore="MissingConstraints" />
 
-        <ImageView
-            android:id="@+id/video_del"
-            android:layout_width="25sp"
-            android:layout_height="25sp"
-            app:srcCompat="@drawable/video_del"
-            tools:layout_editor_absoluteX="316dp"
-            tools:layout_editor_absoluteY="98dp"
-            tools:ignore="MissingConstraints" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#cdcdcd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/cctv_pic"
-            android:layout_width="160sp"
-            android:layout_height="128sp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.036"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/sample1" />
-
-        <TextView
-            android:id="@+id/cctv_market"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="88dp"
-            android:text="가게이름"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cctv_pic" />
-
-        <TextView
-            android:id="@+id/cctv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0000-00-00"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="196dp"
-            tools:layout_editor_absoluteY="56dp"
-            tools:ignore="MissingConstraints" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

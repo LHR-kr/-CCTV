@@ -216,11 +216,12 @@ class Detector:
                     point_in_a_person.append(-1)
                     point_in_a_person.append(-1)
                 else:
-                    point_in_a_person.append(detected_keypoints_for_search[point][0]*2)
-                    point_in_a_person.append(detected_keypoints_for_search[point][1]*2)
+                    point_in_a_person.append(detected_keypoints_for_search[point][0]*1920/640)
+                    point_in_a_person.append(detected_keypoints_for_search[point][1]*1080/480)
             ret.append(point_in_a_person)
-        #사이즈는 [사람 수][14]
-        #코사인 값 붙여서 [사람 수][16만들기]
+            print(point_in_a_person)
+        #사이즈는 [사람 수][18]
+        #코사인 값 붙여서 [사람 수][22]만들기
         for person in ret:
             if person[2] >0 and person[3] >0 and person[4] >0 and person[5] >0 and person[6] >0 and person[7] >0 :
                 vec1x=person[2]-person[4]
