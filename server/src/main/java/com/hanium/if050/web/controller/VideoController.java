@@ -45,7 +45,7 @@ public class VideoController {
 
             VideoListDto videoListDto = new VideoListDto();
 
-            File file = new File(System.getProperty("user.home") + "/files" + video.getFilePath());
+            File file = new File( video.getFilePath());
             File thumbnail = null;
 
             int frameNumber = 0;
@@ -75,7 +75,7 @@ public class VideoController {
         Optional<Video> video = videoRepository.findById(id);
 
 
-        String saveFileName = System.getProperty("user.home") + "/files" + video.get().getFilePath();
+        String saveFileName =  video.get().getFilePath();
 
         File file = new File(saveFileName);
 
